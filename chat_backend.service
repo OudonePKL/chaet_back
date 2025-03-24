@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn daemon for Chat Backend
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/chat_backend
+Environment="PATH=/var/www/chat_backend/venv/bin"
+Environment="DJANGO_SETTINGS_MODULE=chat_backend.settings_prod"
+ExecStart=/var/www/chat_backend/venv/bin/gunicorn \
+    --config /var/www/chat_backend/gunicorn_config.py \
+    chat_backend.asgi:application
+
+[Install]
+WantedBy=multi-user.target 
