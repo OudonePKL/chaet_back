@@ -21,7 +21,8 @@ from urllib.parse import parse_qs
 
 logger = logging.getLogger(__name__)
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chat_backend.settings')
+# Use the environment variable for settings
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.getenv('DJANGO_SETTINGS_MODULE', 'chat_backend.settings'))
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
